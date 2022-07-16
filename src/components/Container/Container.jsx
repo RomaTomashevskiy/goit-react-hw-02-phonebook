@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types'; 
 import css from "./Container.module.css"
 
 function Container({children}) {
@@ -6,6 +6,11 @@ function Container({children}) {
         <div className={css.container}>{children}</div>
     )
 }
+
+Container.prototype = { 
+    children:PropTypes.node.isRequired
+}
+
 
 
 export default Container;
