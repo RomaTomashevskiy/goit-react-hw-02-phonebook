@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Container from "./Container";
-import ContactForm  from "./Form";
+import ContactForm from "./Form/ContactForm";
 import ContactList from "./ContactList";
 import shortid from "shortid";
 import Filter from "./Filter";
+import ElementsList from "./ContactList/ElementsList";
 
 class App extends Component{
   state = {
@@ -29,25 +30,25 @@ class App extends Component{
       name,
       number
     };
-    const {contacts} = this.state
+    const { contacts } = this.state
+    const normalize = name.toLowerCase();
  if (
       contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase(),
+        contact => contact.name.toLowerCase() === normalize,
       )
     ) {
       alert(`${name} is already in contacts.`);
     } else if (contacts.find(contact => contact.number === number)) {
       alert(`${number} is already in contacts.`);
-    } else if (name.trim() === '' || number.trim() === '') {
-      alert("Enter the contact's name and number phone!");
-    } else if (!/\d{3}[-]\d{2}[-]\d{2}/g.test(number)) {
-      alert('Enter the correct number phone!');
-    } else {
+    }  else {
       this.setState(({ contacts }) => ({
         contacts: [contact, ...contacts],
       }));
     }
   };
+
+
+  
 
   changeFilter = e => {
     this.setState({filter:e.currentTarget.value})
@@ -71,7 +72,8 @@ class App extends Component{
         <ContactForm onSubmit={this.onSubmit} />
         <h1>Contacts</h1>
         <Filter value={filter} onChange={this.changeFilter} />
-        <ContactList listContacts={this.getVisibleContactName()} onDeleteContacts={this.onDeleteContacts} />
+        <ContactList listContacts={this.getVisibleContactName()} onDeleteContacts={this.onDeleteContacts}/>
+       
       </Container>  
     )
   }

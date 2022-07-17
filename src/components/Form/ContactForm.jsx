@@ -1,12 +1,13 @@
-import PropTypes from 'prop-types'; 
 import React, { Component } from "react";
 import css from './ContactForm.module.css'
 
-class ContactForm  extends Component{
+
+
+class ContactForm extends Component{
     state = {
         name: '',
         number: ''
-    };
+    }
 
     handleChange = e => {
         const { name, value } = e.currentTarget;
@@ -32,6 +33,7 @@ class ContactForm  extends Component{
                 <label htmlFor="" className={css.label_name}>
                     Name
                     <input 
+                    
                         className={css.input_name}
                         type="text"
                         name="name"
@@ -44,7 +46,7 @@ class ContactForm  extends Component{
                     />
                 </label>
 
-                <label htmlFor=""  className={css.label_number}>
+                <label htmlFor="" className={css.label_number}>
                     Number
                     <input
                         className={css.input_number}
@@ -62,12 +64,6 @@ class ContactForm  extends Component{
             </form>
         )
     }
-
 }
 
-
-ContactForm.prototype = {
-    onSubmit: PropTypes.func.isRequired
-}
-
-export default ContactForm ;
+export default ContactForm;
